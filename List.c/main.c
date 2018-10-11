@@ -1,5 +1,6 @@
 #include "list.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
 	List* lst = new_list();
@@ -8,4 +9,6 @@ int main() {
 	add_first(lst, 111);
 	reverse_list(lst);
 	print_list(lst);
+	
+	return EXIT_SUCCESS;
 }
