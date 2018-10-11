@@ -6,7 +6,8 @@
 
 bool is_empty(List*);
 
-Node* new_node(int num) {
+// Private function 
+static Node* new_node(int num) {
 	Node* node = (Node*)malloc(sizeof(Node));
 	node->value = num;
 	node->next = NULL;
@@ -67,8 +68,12 @@ void reverse_list(List* self)
 }
 
 void print_list(List* self) {
-	while (!is_empty(self)) {
-		printf("%d ", self->head->value);
-		self->head = self->head->next;
+	Node* current = self->head;
+	while (current != NULL) {
+		printf("%d ", current->value);
+		current = current->next;
 	}
 }
+
+
+ 
