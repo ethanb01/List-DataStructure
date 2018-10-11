@@ -21,12 +21,17 @@ List* new_list(void) {
 	lst->head = NULL;
 	lst->last = NULL;
 	lst->length = 0;
+	lst->count_evens = 0;
 	return lst;
 }
 
 // function gets int and add Node to the list
 void add_value(List* self, int num) {
 	Node* to_add = new_node(num);
+	if (num%2==0)
+		self->count_evens++;
+		
+	
 	if (is_empty(self)) {
 		self->head = to_add;
 		self->last = to_add;
@@ -45,6 +50,8 @@ bool is_empty(List* self ) {
 
 void add_first(List* self, int num) {
 	Node* first_to_add = new_node(num);
+	if (num % 2 == 0)
+		self->count_evens++;
 	first_to_add->next = self->head;
 	self->head = first_to_add;
 }
@@ -69,11 +76,25 @@ void reverse_list(List* self)
 
 void print_list(List* self) {
 	Node* current = self->head;
+	if (current != NULL)
+		printf("[");
+
 	while (current != NULL) {
-		printf("%d ", current->value);
-		current = current->next;
+		if (current->next == NULL) {
+			printf("%d]\n", current->value);
+			current = current->next;
+		}
+		else
+		{
+			printf("%d, ", current->value);
+			current = current->next;
+		}
 	}
 }
 
 
- 
+ // get number of even 
+int number_events(List* self)
+{
+	return self->count_evens;
+}
